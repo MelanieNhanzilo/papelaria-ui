@@ -8,18 +8,10 @@ import {
   Package2,
   ShoppingCart,
   Users,
-  
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardHeader,
-//   CardTitle,
-// } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,14 +21,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import ModeToggle from "../ui/mode-toggle";
-import Orders from "../features/orders";
+import ModeToggle from "./ui/mode-toggle";
+import Pesquisa from "./features/pesquisa";
 
-import Pesquisa from "../features/pesquisa";
-
-
-
-export default function Quadro() {
+export default function Sidebar({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -54,14 +42,14 @@ export default function Quadro() {
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <Link
-                href="#"
+                href="/dashboard"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Home className="h-4 w-4" />
                 Dashboard
               </Link>
               <Link
-                href="#"
+                href="/servicos"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <ShoppingCart className="h-4 w-4" />
@@ -71,24 +59,22 @@ export default function Quadro() {
                 </Badge>
               </Link>
               <Link
-                href="#"
+                href="/pedidos"
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
                 <Package className="h-4 w-4" />
                 Pedidos{" "}
               </Link>
               <Link
-                href="#"
+                href="/estudantes"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Users className="h-4 w-4" />
-               Estudantes
+                Estudantes
               </Link>
-              
             </nav>
           </div>
-          <div className="mt-auto p-4">
-          </div>
+          <div className="mt-auto p-4"></div>
         </div>
       </div>
       <div className="flex flex-col">
@@ -107,52 +93,40 @@ export default function Quadro() {
             <SheetContent side="left" className="flex flex-col">
               <nav className="grid gap-2 text-lg font-medium">
                 <Link
-                  href="#"
-                  className="flex items-center gap-2 text-lg font-semibold"
-                >
-                  <Package2 className="h-6 w-6" />
-                  <span className="sr-only">DashBoard</span>
-                </Link>
-                <Link
-                  href="#"
+                  href="/dashboard"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Home className="h-5 w-5" />
                   Dashboard
                 </Link>
                 <Link
-                  href="#"
+                  href="/servicos"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
                 >
                   <ShoppingCart className="h-5 w-5" />
-                  Orders
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    6
-                  </Badge>
+                  Servicos
                 </Link>
                 <Link
-                  href="#"
+                  href="/pedidos"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Package className="h-5 w-5" />
-                  Products
+                  Pedidos
                 </Link>
                 <Link
-                  href="#"
+                  href="/estudantes"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Users className="h-5 w-5" />
                   Estudantes
                 </Link>
-               
               </nav>
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
-            <Pesquisa/>
+            <Pesquisa />
           </div>
-          <ModeToggle/>
-          
+          <ModeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
@@ -170,11 +144,9 @@ export default function Quadro() {
           </DropdownMenu>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-            <Orders/>
-         
+          {children}
         </main>
       </div>
     </div>
   );
 }
-

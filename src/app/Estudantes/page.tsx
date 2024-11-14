@@ -1,10 +1,8 @@
-import Quadro from "@/components/estudantes"
 
 export default function Estudante (){
   return(
     <div>
-      <Quadro/>
-
+      <h1>Estudantes</h1>
     </div>
   )
 }

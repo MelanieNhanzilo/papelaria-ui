@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Metadata } from "next";
 import "./globals.css";
-import { cn } from "@/lib/utils"
 import { ThemeProvider } from "next-themes";
 import { Poppins } from "next/font/google"
+import Sidebar from "@/components/sidebar";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ["400"] })
 
@@ -25,7 +24,9 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
-          {children}
+          <Sidebar>
+            {children}
+          </Sidebar>
         </ThemeProvider>
       </body>
     </html>

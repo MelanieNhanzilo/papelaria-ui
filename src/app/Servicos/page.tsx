@@ -1,10 +1,7 @@
-import Quadro from "@/components/servicos"
-
 export default function Servicos (){
   return(
     <div>
-      <Quadro/>
-
+      <h1>Servicos</h1>
     </div>
   )
 }

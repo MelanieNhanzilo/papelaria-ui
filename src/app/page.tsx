@@ -1,10 +1,7 @@
-import Quadro from "@/components/dashboard/page";
-
-export default function Home (){
+export default function Home(){
   return(
     <div>
-      <Quadro/>
-
+      <h1>Dashboard</h1>
     </div>
   )
 }
