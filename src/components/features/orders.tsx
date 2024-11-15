@@ -14,10 +14,10 @@ export default function PrintOrders() {
     fetchPrints();
   }, []);
   return (
-      <Table>
+      <Table> 
         <TableHeader>
           <TableRow>
-            <TableHead>Nome</TableHead>
+            <TableHead>id</TableHead>
             <TableHead className="hidden sm:table-cell">Documento</TableHead>
             <TableHead className="hidden sm:table-cell">Status</TableHead>
           </TableRow>
@@ -26,12 +26,12 @@ export default function PrintOrders() {
           {prints.map((print) => (
             <TableRow key={print.id}>
               <TableCell>
-                <div className="font-medium">{print.userName}</div>
+                <div className="font-medium">{print.id}</div>
                 <div className="hidden text-sm text-muted-foreground md:inline">
                   {print.userEmail}
                 </div>
               </TableCell>
-              <TableCell className="hidden sm:table-cell">{print.documentName}</TableCell>
+              <TableCell className="hidden sm:table-cell">{print.downloadlink}</TableCell>
               <TableCell className="hidden sm:table-cell">{print.status}</TableCell>
             </TableRow>
           ))}

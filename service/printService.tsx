@@ -9,7 +9,7 @@ class PrintService {
 
     async getPrintsCount(): Promise<number> {
         try{
-            const response = await axios.get(`${this.baseUrl}/api/prints`)
+            const response = await axios.get(`${this.baseUrl}/api/files/list`)
             return response.data.length
         }catch(error) {
             console.error("Erro ao buscar a contagem de pedidos:", error)

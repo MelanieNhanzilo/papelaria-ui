@@ -15,6 +15,7 @@ export default function () {
   const [totalCredits, setTotalCredits] = useState<number | null>(null);
   useEffect(() => {
     const fetchCounts = async () => {
+      
       const total = await printService.getPrintsCount();
       const approved = await printService.getApprovedPrintsCount();
       const users = await userService.getUsersCount();
