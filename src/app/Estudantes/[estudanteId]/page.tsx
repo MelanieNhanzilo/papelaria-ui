@@ -60,7 +60,7 @@ const UserPage = async ({ params }: { params: { estudanteId: string } }) => {
                     <Link href={impressao.downloadlink}>Descarregar</Link>
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {impressao.credits}
+                    {impressao.created.slice(0, 19).replace("T", " ")}
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
                     {impressao.status === "DONE"
