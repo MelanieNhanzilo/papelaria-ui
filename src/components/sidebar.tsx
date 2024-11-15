@@ -48,7 +48,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                 Dashboard
               </Link>
               <Link
-                href="/servicos"
+                href="/Servicos"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted text-muted-foreground transition-all hover:text-primary"
               >
                 <ShoppingCart className="h-4 w-4" />
@@ -62,7 +62,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                 Pedidos{" "}
               </Link>
               <Link
-                href="/estudantes"
+                href="/Estudantes"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted text-muted-foreground transition-all hover:text-primary"
               >
                 <Users className="h-4 w-4" />

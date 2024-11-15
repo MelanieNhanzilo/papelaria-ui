@@ -36,7 +36,7 @@ export default function () {
         <CardComponent title="Saldo Total" icon={<DollarSign />} number={totalCredits ?? 0} />
       </section>
       <section className=" py-8 grid grid-cols-2 gap-4">
-        <Grafico />
+        <Grafico criados={(totalCount||1)} aprovados={(approvedCount||1)} />
         <Card>
           <CardHeader className="text-2xl font-semibold">Pedidos</CardHeader>
           <CardContent>
