@@ -1,10 +1,9 @@
-import Orders from "@/components/features/orders";
-
+import PrintOrders from "@/components/features/orders"
 export default function Pedidos() {
     return(
-        <div>
-            <h1>Pedidos</h1>
-            <Orders/>
+        <div className="w-full">
+            <h1 className="text-3xl">Pedidos</h1>
+            <PrintOrders/>
         </div>
     )
 }

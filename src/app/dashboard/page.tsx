@@ -1,108 +1,48 @@
+'use client'
+import CardComponent from "@/components/cards/Card";
 import { Grafico } from "@/components/features/charts";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import {CheckCheck, DollarSign, ShoppingBag, TrendingUp, User} from "lucide-react"
+import { CheckCheck, DollarSign, ShoppingBag, User } from "lucide-react"
+import { useState, useEffect } from "react";
+import printService from "../../../service/printService";
+import userService from "../../../service/userService";
+import PrintOrders from "@/components/features/orders";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
 export default function () {
-    return(
-        <div className="className=sm: ml-14 p-4 ">
-            <section className="grid grid-cols-4 gap-4"  >
-            <Card>
-            <CardHeader>
-            <div className='flex   items-center justify-between'>
-            <CardTitle className=' text-sm text-black-600'>
-             Total Pedidos
-            </CardTitle> 
-            <ShoppingBag className=" flex items-end justify-between px-1" />
-     
-                   
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p className='text-4xl font-bold'> $ 12.00</p>
-        </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-         Total de pedidos <TrendingUp className="h-4 w-4" />
-        </div>
-      </CardFooter>
-      </Card>
-
-      <Card>
-            <CardHeader>
-            <div className='flex   items-center justify-between'>
-            <CardTitle className=' text-sm text-black-600'>
-             Total Aprovados
-            </CardTitle> 
-            <CheckCheck className=" flex items-end justify-between px-1" />
-     
-                   
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p className='text-4xl font-bold'> $ 12.00</p>
-        </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-         Total de Aprovados <TrendingUp className="h-4 w-4" />
-        </div>
-      </CardFooter>
-      </Card>
-
-      <Card>
-            <CardHeader>
-            <div className='flex   items-center justify-between'>
-            <CardTitle className=' text-sm text-black-600'>
-             Users
-            </CardTitle> 
-            <User className=" flex items-end justify-between px-1" />
-     
-                   
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p className='text-4xl font-bold'> $ 12.00</p>
-        </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-         Total de Users <TrendingUp className="h-4 w-4" />
-        </div>
-      </CardFooter>
-      </Card>
-
-      <Card>
-            <CardHeader>
-            <div className='flex   items-center justify-between'>
-            <CardTitle className=' text-sm text-black-600'>
-             Saldo
-            </CardTitle> 
-            <DollarSign className=" flex items-end justify-between px-1" />
-     
-                   
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p className='text-4xl font-bold'> $ 12.00</p>
-        </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-         Total de dinheiro <TrendingUp className="h-4 w-4" />
-        </div>
-      </CardFooter>
-      </Card>
-
-     
-
+  const [totalCount, setTotalCount] = useState<number | null>(null);
+  const [approvedCount, setApprovedCount] = useState<number | null>(null);
+  const [userCount, setUserCount] = useState<number | null>(null);
+  const [totalCredits, setTotalCredits] = useState<number | null>(null);
+  useEffect(() => {
+    const fetchCounts = async () => {
+      const total = await printService.getPrintsCount();
+      const approved = await printService.getApprovedPrintsCount();
+      const users = await userService.getUsersCount();
+      const totalCredit = await userService.getTotalCredits();
+      setTotalCount(total);
+      setApprovedCount(approved);
+      setUserCount(users);
+      setTotalCredits(totalCredit)
+    };
+    fetchCounts();
+  }, []);
+  return (
+    <div className="p-4 w-full">
+      <section className="grid grid-cols-4 gap-4 w-full"  >
+        <CardComponent title="Total Pedidos" icon={<ShoppingBag />} number={totalCount} />
+        <CardComponent title="Total Aprovados" icon={<CheckCheck />} number={approvedCount} />
+        <CardComponent title="Users" icon={<User />} number={userCount} />
+        <CardComponent title="Saldo Total" icon={<DollarSign />} number={totalCredits ?? 0} />
       </section>
-
-     
-      <section className=" py-8 grid grid-cols-2">
-      <Grafico/>
-              
-            </section>
-        
-     
-            
-
-            
-        </div>
-    )
+      <section className=" py-8 grid grid-cols-2 gap-4">
+        <Grafico />
+        <Card>
+          <CardHeader className="text-2xl font-semibold">Pedidos</CardHeader>
+          <CardContent>
+            <PrintOrders />
+          </CardContent>
+        </Card>
+      </section>
+    </div>
+  )
 }
